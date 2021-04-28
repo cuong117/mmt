@@ -1,46 +1,12 @@
 import java.io.*;
 import java.net.*;
-import java.util.Scanner;
+import java.util.ArrayList;
 
 public class Server extends Thread{
-    private Socket socket;
-    private String userName;
-    public Server(){
-    }
-    public Server(Socket socket, String u){
-        this.socket = socket;
-        this.userName = u;
-    }
 
-    public void run(){
-        Scanner sc = new Scanner(System.in);
-        try {
+    public static ArrayList<ServerThread> list_user = new ArrayList<>();
 
-                BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-                BufferedWriter out = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
-                String input = in.readLine();
-                if (input != null) {
-                    System.out.println("thong diep tu client: " + input);
-                    System.out.print("Tra loi: ");
-                    out.write(sc.next());
-                    out.newLine();
-                    out.flush();
-                }
-
-        }  catch (SocketException e){
-            System.out.println("Disconect From: " + socket.getInetAddress());
-        }  catch (IOException e) {
-            e.printStackTrace();
-        }  finally {
-            try {
-                socket.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-    }
-
-    public void serve() {
+    public static void serve() {
         try {
             InetAddress inetAddress = InetAddress.getLocalHost();
             System.out.println("IP Server: " + inetAddress.getHostAddress());
@@ -48,11 +14,11 @@ public class Server extends Thread{
             e.printStackTrace();
         }
         try {
-            ServerSocket server = new ServerSocket(117);
-            int count = 0;
+            ServerSocket server = new ServerSocket(2001);
             while (true) {
                 Socket socket = server.accept();
-                new Server(socket,String.valueOf(count)).start();
+                System.out.println("connect from" + socket.getInetAddress());
+                new ServerThread(socket).start();
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -60,8 +26,37 @@ public class Server extends Thread{
 
     }
 
+    public static void sendToAllClient(String message){
+        for(int i = 0; i < list_user.size(); i++){
+            list_user.get(i).sendToClient(message);
+        }
+    }
+
+    public static String getListUserName(){
+        String result = "Danh sách người dùng khả dụng:\n";
+        for(int i = 0; i < list_user.size(); i++){
+            result = result + list_user.get(i).getUserName() + "\n";
+        }
+        return result;
+    }
+
+    public static ServerThread getReceiver(String userName) {
+        for(int i = 0; i < list_user.size(); i++){
+            if (userName.equals(list_user.get(i).getUserName())){
+                return list_user.get(i);
+            }
+        }
+        return null;
+    }
+
+    public static boolean checkUserExit(String userName){
+        for(int i = 0; i < list_user.size(); i++){
+            if(userName.equals(list_user.get(i).getUserName()))
+                return true;
+        }
+        return false;
+    }
     public static void main(String[] args){
-        Server server = new Server();
-        server.serve();
+        Server.serve();
     }
 }
