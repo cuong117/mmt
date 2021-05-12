@@ -1,6 +1,7 @@
 import java.io.*;
 import java.net.*;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Server extends Thread{
 
@@ -28,14 +29,17 @@ public class Server extends Thread{
 
     public static void sendToAllClient(String message){
         for(int i = 0; i < list_user.size(); i++){
-            list_user.get(i).sendToClient(message);
+            if(list_user.get(i).getUserName() != null)
+                list_user.get(i).sendToClient(message);
         }
     }
 
     public static String getListUserName(){
-        String result = "Danh sách người dùng khả dụng:\n";
+        String result = "@ListUser";
         for(int i = 0; i < list_user.size(); i++){
-            result = result + list_user.get(i).getUserName() + "\n";
+            if(list_user.get(i).getUserName() != null) {
+                result = result + "/" + list_user.get(i).getUserName();
+            }
         }
         return result;
     }
@@ -47,6 +51,17 @@ public class Server extends Thread{
             }
         }
         return null;
+    }
+
+    public static List<ServerThread> getSender(String userName){
+        List<ServerThread> list = new ArrayList<>();
+        for(int i = 0; i < list_user.size(); i++){
+            if(list_user.get(i).getReceive() != null) {
+                if (userName.equals(list_user.get(i).getNameReceiver()))
+                    list.add(list_user.get(i));
+            }
+        }
+        return list;
     }
 
     public static boolean checkUserExit(String userName){
