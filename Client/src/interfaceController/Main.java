@@ -30,7 +30,8 @@ public class Main extends Application {
 
         try {
             SceneController.setScene(scene);
-            FXMLLoader start = new FXMLLoader(getClass().getResource("/interface/interface.fxml"));
+
+            FXMLLoader start = new FXMLLoader(getClass().getResource("/interface/login1.fxml"));
             FXMLLoader select = new FXMLLoader(getClass().getResource("/interface/list_user.fxml"));
             FXMLLoader message = new FXMLLoader(getClass().getResource("/interface/Message_interface.fxml"));
             SceneController.addScene("start",start.load(),start);

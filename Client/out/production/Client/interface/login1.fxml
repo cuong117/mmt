@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="interfaceController.Controller">
+   <children>
+      <ImageView fitHeight="400.0" fitWidth="600.0" pickOnBounds="true" smooth="false">
+         <image>
+            <Image url="@../graphic/sceen.jpg" />
+         </image></ImageView>
+      <VBox alignment="TOP_CENTER" nodeOrientation="LEFT_TO_RIGHT" prefHeight="200.0" prefWidth="100.0">
+         <children>
+            <Label text="Đăng Nhập" wrapText="true">
+               <VBox.margin>
+                  <Insets top="40.0" />
+               </VBox.margin>
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Label>
+            <TextField fx:id="inputName" onKeyPressed="#name" opacity="0.62" promptText="Tài Khoản">
+               <VBox.margin>
+                  <Insets left="190.0" right="190.0" top="40.0" />
+               </VBox.margin>
+            </TextField>
+            <Label fx:id="error" text="Người dùng không tồn tại" textFill="ALICEBLUE" visible="false" wrapText="true">
+               <VBox.margin>
+                  <Insets right="45.0" top="10.0" />
+               </VBox.margin>
+            </Label>
+            <Button mnemonicParsing="false" onAction="#getName" opacity="0.96" text="Đăng Nhập">
+               <VBox.margin>
+                  <Insets top="25.0" />
+               </VBox.margin>
+            </Button>
+            <Label text="Thành Viên" textFill="aliceblue">
+               <VBox.margin>
+                  <Insets top="25.0" />
+               </VBox.margin>
+            </Label>
+            <Label text="Văn Đăng Cường" textFill="aliceblue">
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </Label>
+            <Label text="Nguyễn Hữu Kiên" textFill="aliceblue">
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </Label>
+            <Label text="Phạm Việt Hà" textFill="aliceblue">
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </Label>
+         </children>
+         <StackPane.margin>
+            <Insets />
+         </StackPane.margin>
+      </VBox>
+   </children>
+</StackPane>
