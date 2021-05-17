@@ -23,12 +23,7 @@ public class Controller {
     public void setError(String message){
         error.setVisible(true);
         error.setTextFill(Color.RED);
-        Platform.runLater(new Runnable() {
-            @Override
-            public void run() {
-                error.setText(message);
-            }
-        });
+        Platform.runLater(() -> error.setText(message));
     }
 
     public void name(KeyEvent event){

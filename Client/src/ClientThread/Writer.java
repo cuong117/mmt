@@ -7,8 +7,8 @@ import java.net.Socket;
 import java.net.SocketException;
 
 public class Writer {
-    public Socket socket;
-    public BufferedWriter out;
+    private Socket socket;
+    private BufferedWriter out;
 
     public Writer(Socket socket){
         this.socket = socket;

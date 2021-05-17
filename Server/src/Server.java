@@ -6,6 +6,7 @@ import java.util.List;
 public class Server extends Thread{
 
     public static ArrayList<ServerThread> list_user = new ArrayList<>();
+    private static final int port = 2001;
 
     public static void serve() {
         try {

@@ -5,7 +5,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import javafx.scene.input.KeyEvent;
 
 import java.net.URL;
 import java.util.*;
@@ -16,9 +15,6 @@ public class list_control implements Initializable {
     public TextField search_receiver;
     private ObservableList<String> user;
     private List<String> allUser = new ArrayList<>();
-
-    public void search(KeyEvent e){
-    }
 
     public void back(){
         Alert confim = new Alert(Alert.AlertType.CONFIRMATION);
@@ -39,12 +35,7 @@ public class list_control implements Initializable {
     }
 
     public void addList(){
-        Platform.runLater(new Runnable() {
-            @Override
-            public void run() {
-                user.setAll(allUser);
-            }
-        });
+        Platform.runLater(() -> user.setAll(allUser));
     }
 
     public void createList(String source){

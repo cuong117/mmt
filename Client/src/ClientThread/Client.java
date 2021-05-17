@@ -5,19 +5,9 @@ import java.net.Socket;
 
 public class Client {
     public Socket socket;
-    public ReadThread reader;
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public Writer writer;
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    public String userName;
+    private ReadThread reader;
+    private Writer writer;
+    private String userName;
 
     public Client(){
         try {
@@ -30,8 +20,13 @@ public class Client {
             e.printStackTrace();
         }
     }
+    public String getUserName() {
+        return userName;
+    }
 
-
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
 
     public void close(){
         try {

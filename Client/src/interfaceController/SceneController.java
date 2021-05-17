@@ -18,9 +18,7 @@ public class SceneController {
     }
 
     public static void activeScene(String name){
-        Platform.runLater(() -> {
-            scene.setRoot(sceneMap.get(name));
-        });
+        Platform.runLater(() -> scene.setRoot(sceneMap.get(name)));
     }
 
     public static void setScene(Scene sc) {

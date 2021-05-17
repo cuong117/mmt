@@ -31,7 +31,7 @@ public class MessageController {
     public void send(){
         String str = message.getText().trim();
         if(!str.isEmpty()) {
-            Main.c.sendMessage("@ClientMessage/" + Main.c.userName + "/" + str);
+            Main.c.sendMessage("@ClientMessage/" + Main.c.getUserName() + "/" + str);
             setLabel(str, Pos.TOP_RIGHT, vbox);
             message.clear();
         }
@@ -41,16 +41,13 @@ public class MessageController {
         if(event.getCode() == KeyCode.ENTER){
             String str = message.getText().trim();
             if(!str.isEmpty()) {
-                Main.c.sendMessage("@ClientMessage/" + Main.c.userName + "/" + str);
+                Main.c.sendMessage("@ClientMessage/" + Main.c.getUserName() + "/" + str);
                 setLabel(str, Pos.TOP_RIGHT, vbox);
                 message.clear();
             }
         }
     }
 
-    /*public void sendMessage(String str) {
-        setLabel(str, Pos.TOP_RIGHT, vbox);
-    }*/
 
     public void receiveMessage(String string){
         String[] arr = string.split("/",2);
