@@ -11,7 +11,7 @@ public class Client {
 
     public Client(){
         try {
-            socket = new Socket("192.168.1.28", 2001);
+            socket = new Socket("localhost", 2001);
             reader = new ReadThread(socket);
             reader.start();
             writer = new Writer(socket);
